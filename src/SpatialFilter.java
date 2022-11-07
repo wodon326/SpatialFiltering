@@ -1,10 +1,16 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class SpatialFilter {
-    public BufferedImage meanFilter33(BufferedImage image) {
+    public BufferedImage meanFilter33(BufferedImage input_image) {
+        ColorModel cm = input_image.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = input_image.copyData(null);
+        BufferedImage image =  new BufferedImage(cm, raster, isAlphaPremultiplied, null);
         double[][] mask = {
                 {1.0 / 9, 1.0 / 9, 1.0 / 9},
                 {1.0 / 9, 1.0 / 9, 1.0 / 9},
@@ -30,7 +36,11 @@ public class SpatialFilter {
         return image;
     }
 
-    public BufferedImage meanFilter55(BufferedImage image) {
+    public BufferedImage meanFilter55(BufferedImage input_image) {
+        ColorModel cm = input_image.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = input_image.copyData(null);
+        BufferedImage image =  new BufferedImage(cm, raster, isAlphaPremultiplied, null);
         double[][] mask = {
                 {1.0 / 25, 1.0 / 25, 1.0 / 25, 1.0 / 25, 1.0 / 25},
                 {1.0 / 25, 1.0 / 25, 1.0 / 25, 1.0 / 25, 1.0 / 25},
@@ -58,7 +68,11 @@ public class SpatialFilter {
         return image;
     }
 
-    public BufferedImage medianFilter33(BufferedImage image) {
+    public BufferedImage medianFilter33(BufferedImage input_image) {
+        ColorModel cm = input_image.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = input_image.copyData(null);
+        BufferedImage image =  new BufferedImage(cm, raster, isAlphaPremultiplied, null);
         int maxWidth = image.getWidth();
         int maxHeight = image.getHeight();
         for (int i = 1; i < maxHeight - 1; i++) {
@@ -85,7 +99,11 @@ public class SpatialFilter {
         return image;
     }
 
-    public BufferedImage medianFilter55(BufferedImage image) {
+    public BufferedImage medianFilter55(BufferedImage input_image) {
+        ColorModel cm = input_image.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = input_image.copyData(null);
+        BufferedImage image =  new BufferedImage(cm, raster, isAlphaPremultiplied, null);
         int maxWidth = image.getWidth();
         int maxHeight = image.getHeight();
         for (int i = 2; i < maxHeight - 2; i++) {
@@ -112,7 +130,11 @@ public class SpatialFilter {
         return image;
     }
 
-    public BufferedImage laplacianFilter(BufferedImage image) {
+    public BufferedImage laplacianFilter(BufferedImage input_image) {
+        ColorModel cm = input_image.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = input_image.copyData(null);
+        BufferedImage image =  new BufferedImage(cm, raster, isAlphaPremultiplied, null);
         double[][] mask = {
                 {0, -1, 0},
                 {-1, 4, -1},
@@ -144,7 +166,11 @@ public class SpatialFilter {
         return image;
     }
 
-    public BufferedImage laplacianGaussianFilter(BufferedImage image) {
+    public BufferedImage laplacianGaussianFilter(BufferedImage input_image) {
+        ColorModel cm = input_image.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = input_image.copyData(null);
+        BufferedImage image =  new BufferedImage(cm, raster, isAlphaPremultiplied, null);
         double[][] gaussainMask = {
                 {1.0 / 16, 1.0 / 8, 1.0 / 16},
                 {1.0 / 8, 1.0 / 4, 1.0 / 8},
